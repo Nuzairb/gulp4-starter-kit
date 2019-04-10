@@ -41,8 +41,9 @@ function style() {
 
 
 // A simple task to reload the page
-function reload() {
+function reload(done) {
     browserSync.reload();
+    done();
 }
 
 // Add browsersync initialization at the start of the watch task
@@ -60,8 +61,7 @@ function watch() {
     // We should tell gulp which files to watch to trigger the reload
     // This can be html or whatever you're using to develop your website
     // Note -- you can obviously add the path to the Paths object
-    //gulp.watch("src/*.html", reload);
-    gulp.watch("src/*.html").on('change', browserSync.reload);
+    gulp.watch("src/*.html", reload);
 }
  
 // We don't have to expose the reload function
